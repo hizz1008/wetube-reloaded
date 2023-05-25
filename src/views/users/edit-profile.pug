@@ -1,0 +1,39 @@
+extends ../base
+
+block content
+  img(
+    src="/" + loggedInUser.avatarUrl.replace(/\\/g, "/"),
+    width="100",
+    height="100"
+  )
+  if errorMessage
+    span #{ errorMessage }
+  form(method="POST", enctype="multipart/form-data")
+    label(for="avatar") Avatar
+    input#avatar(type="file", name="avatar", accept="image/*")
+    input(
+      name="username",
+      type="text",
+      required,
+      placeholder="Username",
+      value=loggedInUser.username
+    )
+    input(
+      name="email",
+      type="email",
+      required,
+      placeholder="Email",
+      value=loggedInUser.email
+    )
+    input(
+      name="location",
+      type="text",
+      required,
+      placeholder="Location",
+      value=loggedInUser.location
+    )
+
+    input(type="submit", value="Update profile")
+    hr
+    if ! loggedInUser.socialOnly
+      a(href="change-password") Change Password &rarr;
