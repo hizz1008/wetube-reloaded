@@ -1,11 +1,12 @@
 extends ../base
 
 block content
-  img(
-    src="/" + loggedInUser.avatarUrl.replace(/\\/g, "/"),
-    width="100",
-    height="100"
-  )
+  if loggedInUser.avatarUrl
+    img(
+      src="/" + loggedInUser.avatarUrl.replace(/\\/g, "/"),
+      width="100",
+      height="100"
+    )
   if errorMessage
     span #{ errorMessage }
   form(method="POST", enctype="multipart/form-data")
